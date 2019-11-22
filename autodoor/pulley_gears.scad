@@ -1,6 +1,7 @@
 include <gears/gears.scad>
 
-
+showPinion=true;
+showPulley = true;
  
 gear_teeth=35;
 pinion_teeth=11;
@@ -29,7 +30,7 @@ module myCutOut()
     }
 }
 
-
+if(showPulley)
 difference()
 {
     union()
@@ -46,6 +47,7 @@ difference()
     myCutOut();
 }
 
+if(showPinion)
 translate([60,0,00])
 {
     // pinion

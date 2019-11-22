@@ -1,0 +1,27 @@
+{
+    "parameterSets": {
+        "mysize": {
+            "axis_angle": "100",
+            "gear_bore": "0",
+            "gear_scale": "2.26",
+            "gear_teeth": "35",
+            "helix_angle": "20",
+            "pinion_bore": "0",
+            "pinion_teeth": "11",
+            "pressure_angle": "20",
+            "tooth_width": "5"
+        },
+        "mytrans": {
+            "axis_angle": "100",
+            "gear_bore": "0",
+            "gear_scale": "2.26",
+            "gear_teeth": "35",
+            "helix_angle": "20",
+            "pinion_bore": "0",
+            "pinion_teeth": "11",
+            "pressure_angle": "20",
+            "tooth_width": "5"
+        }
+    },
+    "fileFormatVersion": "1"
+}
