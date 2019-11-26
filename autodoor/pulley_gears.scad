@@ -1,7 +1,7 @@
 include <gears/gears.scad>
 
-showPinion=true;
-showPulley = true;
+showPinion=false;
+showPulley = false;
 showKeyedBore = true;
 
  
@@ -17,7 +17,6 @@ gear_scale=2.26;
 
 delta_gear = atan(sin(axis_angle)/(pinion_teeth/gear_teeth+cos(axis_angle)));   // Cone Angle of the Gear 
 delta_pinion = atan(sin(axis_angle)/(gear_teeth/pinion_teeth+cos(axis_angle)));// Cone Angle of the Pinion
-
 
 
 module myCutOut()
@@ -56,7 +55,7 @@ difference()
     // pulley Gear 
     translate([0,0,13])
     scale([gear_scale,gear_scale,gear_scale])
-        bevel_gear(modul=1, tooth_number=35, partial_cone_angle=delta_gear,       tooth_width=tooth_width, bore=gear_bore, pressure_angle = pressure_angle, helix_angle=helix_angle);
+        bevel_gear(modul=1, tooth_number=35, partial_cone_angle=delta_gear, tooth_width=tooth_width, bore=gear_bore, pressure_angle = pressure_angle, helix_angle=helix_angle);
     } 
     myCutOut();
 }
@@ -85,9 +84,12 @@ translate([45,-25,00])
     {
     cylinder(  cylinderHeight, 7, 7, $fa = 4, $fs = 0.01);
     translate([0,0,-1])
-    cylinder(  cylinderHeight + 2,    2.6,    2.6, $fa = 4, $fs = 0.01);
+    cylinder(  cylinderHeight + 2,    2.68,    2.68, $fa = 4, $fs = 0.01);
     }    
     
-    translate([1.5,-2.5,cylinderHeight - keyHeight])
+    translate([1.6,-2.5,cylinderHeight - keyHeight])
     cube([3,5,keyHeight]);
 }
+
+
+
