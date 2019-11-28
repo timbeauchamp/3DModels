@@ -18,22 +18,67 @@ module prism(l, w, h)
 translate([-70,-30,0])
 difference()
 {
-    cube([70, 60,2.5], false);
+    union()
+    {
+        cube([70, 60,2.5], false);
+        translate([3.5,-15,0])
+        cube([15, 90,2.5], false);
+
+        translate([3.5,72,0])
+        cube([15, 3,52], false);
+        translate([3.5,-15,0])
+        cube([15, 3,52], false);
+    }
     translate([48,8,-.1])
-    cylinder(3.2,1.6,1.6,false);
+    cylinder(3.2,1.6,1.6,false); // Mounting hole
     translate([48,52,-.1])
-    cylinder(3.2,1.6,1.6,false);
-    
+    cylinder(3.2,1.6,1.6,false); // Mounting hole
+
+    translate([11,30,-.5])
+ #   cylinder(5,1.62,1.62,false); // pulley axle hole
 }
 
-// pulley axel
-translate([-59,0,0])
+// top
+rotate([180,0,0])
+//translate([-70,-30,72]) //52
+translate([5,-30,-3]) //52
 difference()
 {
-    cylinder(18,2.35,2.35,false);
-    translate([0,0,8])
-    cylinder(10.1,1,1,false);
+    union()
+    {
+        translate([18.5,22.5,0])
+        cube([44, 15,3], false);
+        translate([1,-17.5,0])
+        cube([20, 95,3], false);
+        translate([1,69.5,-13])
+        cube([20, 8,13], false);
+        translate([1,-17.5,-13])
+        cube([20, 8,13], false);
+        
+        
+        difference()
+        {
+            translate([56.9,2.5,-3])
+            cube([8, 55,6], false);
+            union()
+            {
+                translate([59.3,5.4,-5])
+               cube([3.2, 49.2,5], false);
+                translate([55,9.4,-5])
+               cube([13.2, 41.2,5], false);
+            }
+        }
+    }
+        translate([3.4,71.9,-15])
+        cube([15.2, 3.2, 15], false);
+        translate([3.4,-15.1,-15])
+        cube([15.2, 3.2, 15], false);
+    
+    translate([11,30,-.5])
+ #   cylinder(5,1.62,1.62,false); // pulley axle hole
 }
+
+
 //motor support
 translate([-10.6,0,2])
 {
