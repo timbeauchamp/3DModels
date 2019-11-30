@@ -3,6 +3,9 @@ use <../../MCAD/motors.scad>;
 $fn=100;
 //dimensions from:
 	// http://www.numberfactory.com/NEMA%20Motor%20Dimensions.htm
+showTop = false;
+showBase = false;
+showSpacer = true;
 
 module prism(l, w, h)
 {
@@ -12,10 +15,19 @@ module prism(l, w, h)
             );
 }
    
-   
+if(showSpacer)
+translate([35,-15])
+difference()
+{
+    cylinder(36.4,5,5,false);
+    translate([0,0,-.1])
+    cylinder(38,1.75,1.75,false);
+
+}
 
 // base
-translate([-70,-30,0])
+if(showBase)
+{translate([-70,-30,0])
 difference()
 {
     union()
@@ -35,12 +47,61 @@ difference()
     cylinder(3.2,1.6,1.6,false); // Mounting hole
 
     translate([11,30,-.5])
- #   cylinder(5,1.62,1.62,false); // pulley axle hole
+    cylinder(5,1.62,1.62,false); // pulley axle hole
+}
+//motor support
+translate([-10.6,0,2])
+{
+    translate([10.5,-24.5,0])
+    rotate([0,0,90])
+    prism(2.5, 5.5, 12);
+
+    translate([3,-24.5,0])
+    cube([2, 2.5, 12], false);
+
+    translate([10.5,22,0])
+    rotate([0,0,90])
+    prism(2.5, 5.5, 12);
+
+    translate([3,22,0])
+    cube([2, 2.5, 12], false);
+
+    difference()
+    {
+    translate([0,-24.5,0])
+    cube([3,49,50],false);
+    
+//    translate([0,0,-1.230])
+    translate([3.4,0,28.77])
+    rotate([0,-90,0])
+    union()
+    {   
+      cylinder(5,11.2,11.2,false);
+      cylinder(8,2.9, 2.9);
+
+      translate([0,0,3]) 
+//     stepper_motor_mount(17,slide_distance=0, mochup=false, tolerance=0);
+
+      for(r=[45:90:315])
+      {
+          rotate([0,0,r])
+          translate([21.9,0,-5])
+          cylinder(10,1.52,1.52);
+      }
+      translate([10,-2.50,0])
+        cube([12,5,4]);
+
+  }
+}
+}
 }
 
+
+
+if(showTop)
 // top
 rotate([180,0,0])
-//translate([-70,-30,72]) //52
+//translate([-70,-30,52]) //52
 translate([5,-30,-3]) //52
 difference()
 {
@@ -69,56 +130,17 @@ difference()
             }
         }
     }
-        translate([3.4,71.9,-15])
-        cube([15.2, 3.2, 15], false);
-        translate([3.4,-15.1,-15])
-        cube([15.2, 3.2, 15], false);
+        translate([3.3,71.8,-15])
+        cube([15.4, 3.4, 15], false);
+        translate([3.3,-15.2,-15])
+        cube([15.4, 3.4, 15], false);
+        
+        translate([11,30,-6.5])
+        rotate([90,0,0])
+       cylinder(97,1.62,1.62,true); // pulley axle hole
     
     translate([11,30,-.5])
- #   cylinder(5,1.62,1.62,false); // pulley axle hole
+    cylinder(5,1.62,1.62,false); // Cross piece holes
 }
 
 
-//motor support
-translate([-10.6,0,2])
-{
-    translate([10.5,-24.5,0])
-    rotate([0,0,90])
-    prism(2.5, 5.5, 12);
-
-    translate([3,-24.5,0])
-    cube([2, 2.5, 12], false);
-
-    translate([10.5,22,0])
-    rotate([0,0,90])
-    prism(2.5, 5.5, 12);
-
-    translate([3,22,0])
-    cube([2, 2.5, 12], false);
-
-    difference()
-    {
-    translate([0,-24.5,0])
-    cube([3,49,50],false);
-    
-    translate([3.4,0,30])
-    rotate([0,-90,0])
-    union()
-    {   
-      cylinder(5,11.2,11.2,false);
-      cylinder(8,2.9, 2.9);
-
-      translate([0,0,3]) 
-//     stepper_motor_mount(17,slide_distance=0, mochup=false, tolerance=0);
-
-      for(r=[45:90:315])
-      {
-          rotate([0,0,r])
-          translate([21.9,0,-5])
-          cylinder(10,1.52,1.52);
-      }
-
-
-  }
-}
-}
