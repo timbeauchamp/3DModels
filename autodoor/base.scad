@@ -3,9 +3,9 @@ use <../../MCAD/motors.scad>;
 $fn=100;
 //dimensions from:
 	// http://www.numberfactory.com/NEMA%20Motor%20Dimensions.htm
-showTop = false;
-showBase = false;
-showSpacer = true;
+showTop = true;
+showBase = true;
+showSpacer = false;
 
 module prism(l, w, h)
 {
@@ -37,9 +37,9 @@ difference()
         cube([15, 90,2.5], false);
 
         translate([3.5,72,0])
-        cube([15, 3,52], false);
+        cube([15, 3,35], false);
         translate([3.5,-15,0])
-        cube([15, 3,52], false);
+        cube([15, 3,35], false);  // add back
     }
     translate([48,8,-.1])
     cylinder(3.2,1.6,1.6,false); // Mounting hole
@@ -107,15 +107,23 @@ difference()
 {
     union()
     {
-        translate([18.5,22.5,0])
-        cube([44, 15,3], false);
-        translate([1,-17.5,0])
+        translate([33,22.5,0])
+        cube([31.9, 15,3], false);
+        translate([21,22.5,-30])
+        cube([15, 15,3], false);
+        translate([33,22.5,-30])
+        cube([3, 15,33], false);
+        translate([1,-17.5,-30])
         cube([20, 95,3], false);
-        translate([1,69.5,-13])
+        translate([1,69.5,-30])
         cube([20, 8,13], false);
-        translate([1,-17.5,-13])
+        translate([1,-17.5,-30])
         cube([20, 8,13], false);
         
+        translate([1,69.5,-17])
+        cube([20, 8,2], false);
+        translate([1,-17.5,-17])
+        cube([20, 8,2], false);
         
         difference()
         {
@@ -130,17 +138,17 @@ difference()
             }
         }
     }
-        translate([3.3,71.8,-15])
-        cube([15.4, 3.4, 15], false);
-        translate([3.3,-15.2,-15])
-        cube([15.4, 3.4, 15], false);
+        translate([3.3,71.8,-31])
+        cube([15.4, 3.4, 14], false);
+        translate([3.3,-15.2,-31])
+        cube([15.4, 3.4, 14], false);
         
-        translate([11,30,-6.5])
+        translate([11,30,-22])
         rotate([90,0,0])
-       cylinder(97,1.62,1.62,true); // pulley axle hole
+        cylinder(97,1.62,1.62,true); // Cross piece holes
     
-    translate([11,30,-.5])
-    cylinder(5,1.62,1.62,false); // Cross piece holes
+    translate([11,30,-30.5])
+    cylinder(5,1.62,1.62,false); // pulley axle hole
 }
 
 
