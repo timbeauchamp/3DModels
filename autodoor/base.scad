@@ -21,7 +21,7 @@ difference()
 {
     cylinder(36.4,5,5,false);
     translate([0,0,-.1])
-    cylinder(38,1.75,1.75,false);
+    cylinder(38,1.85,1.85,false);
 
 }
 

@@ -1,7 +1,7 @@
 include <gears/gears.scad>
 
-showPinion=true;
-showPulley = false;
+showPinion=false;
+showPulley = true;
 showKeyedBore = false;
 
  
@@ -21,6 +21,9 @@ delta_pinion = atan(sin(axis_angle)/(gear_teeth/pinion_teeth+cos(axis_angle)));/
 
 module myCutOut()
 {
+    translate([0,0,-2])
+    cylinder(24, 1.85, 1.85);
+    
     for(a = [0, 90, 180, 270])
     {
         rotate([0,0,a])
@@ -30,7 +33,6 @@ module myCutOut()
             {
                 linear_extrude(height = 24, center = false, convexity = 10, twist = 0)
                 polygon( points=[[7,2],[26,2],[20,15],[18,18],[15,20],[2,26],[2,7]]);
-                cylinder(24, 2.5, 2.5);
             }
             {
                 translate([16.5,2.05,15.5])
