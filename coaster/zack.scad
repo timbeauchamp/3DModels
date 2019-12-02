@@ -1,77 +1,65 @@
-$fn=100;
+include <defaultparams.scad>
 
-m1 = 0.159789289; // inner logo multiplier
-m2 = 0.69666374; // logo circle multiplier
+coasterRadius = 55; // [40, 45, 50, 55, 60]
+coasterHeight = 5; // [4, 5, 6, 7]
+rimWidth = 5; // [4, 5, 6]
+numPoints = 8; // [4, 5, 6, 7, 8, 9, 10]
 
-innerRadius = 50;
-//innerWidth = 100/sqrt(2);
+innerRadius = coasterRadius - rimWidth;
 circleRadius = m2 * innerRadius;
 innerLogoRadius = m1 * innerRadius;
 
-
-module star() 
+// coaster body
+*difference()
 {
-    points = [ [0, 0], [innerLogoRadius * sin(-22.7), innerLogoRadius * cos(-22.7)],[0, innerRadius],[innerLogoRadius * sin(22.7), innerLogoRadius * cos(22.7)]];
-
-    linear_extrude(4)
     union()
     {
-        for(a=[0:45:315])
+        difference()
         {
-            rotate([0,0,a])
-            polygon(points);
+            cylinder(coasterHeight,coasterRadius,coasterRadius);
+            translate([0,0,2])
+            cylinder(coasterHeight,innerRadius,innerRadius);
         }
+        cylinder(coasterHeight,circleRadius,circleRadius);
+        starTips(numPoints,coasterHeight,innerRadius,innerLogoRadius,circleRadius);
+    }
+    translate([0,0,-.1])
+    cutout(numPoints,coasterHeight,innerRadius,innerLogoRadius,circleRadius);
+}
+
+cutout(numPoints,coasterHeight,innerRadius,innerLogoRadius,circleRadius);
+
+module cutout(numPoints = 8, height = 4 ,outerRad = 50, innerRad = 20, circleRad=40)
+{
+    intersection()
+    {
+        cylinder(height + 1 ,circleRad,circleRad);
+        translate([0,0,-.1])
+        star(numPoints,height + 2,outerRad,innerRad);    
     }
 }
 
-
-//star();
-// coaster body
-difference()
-    {
+module star(numPoints = 8, height = 4 ,outerRad = 50, innerRad = 20) 
+{
+    totalPoints = numPoints * 2;
+    increment = 360/totalPoints;
     
-        cylinder(6,55,55);
-        union()
-        {
-            translate([0,0,2])
-            cylinder(4.1,innerRadius,innerRadius);
-            translate([0,0,-.1])
-            intersection()
-            {
-                cylinder(10,circleRadius,circleRadius);
-                translate([0,0,-.1])
-                scale([1,1,4])
-                star();    
-            }
-        }
-    }
+    function getPoint(a,r) = ([sin(a) * r, cos(a) * r]);
+        
+    points = [ for(a=[0:increment:361 - increment]) (getPoint(a,((a % (increment * 2)) <= .01? outerRad : innerRad)))];
+    echo(points);
+    linear_extrude(height)
+    polygon(points);
+}
+
 
 //Star Tips
-difference()
+module starTips(numPoints = 8, height = 4 ,outerRad = 50, innerRad = 20, circleRad=40)
 {
-    star();    
-    translate([0,0,-.1])
-    cylinder(6,circleRadius,circleRadius);
+    difference()
+    {
+        star(numPoints,height,outerRad,innerRad);    
+        translate([0,0,-.1])
+        cylinder(height + 1,circleRad,circleRad);
+    }
 }
-
-//circle minus star
-difference()
-{
-    cylinder(4,circleRadius,circleRadius);
-    translate([0,0,-.1])
-    scale([1,1,2])
-    star();    
-}
-
-
-*intersection()
-{
-    cylinder(10,circleRadius,circleRadius);
-    translate([0,0,-.1])
-    scale([1,1,4])
-    star();    
-}
-
-
-
-
