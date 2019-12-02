@@ -4,7 +4,7 @@ $fn=100;
 //dimensions from:
 	// http://www.numberfactory.com/NEMA%20Motor%20Dimensions.htm
 showTop = true;
-showBase = true;
+showBase = false;
 showSpacer = false;
 
 module prism(l, w, h)
@@ -100,55 +100,39 @@ translate([-10.6,0,2])
 
 if(showTop)
 // top
-rotate([180,0,0])
+rotate([0,0,0])
 //translate([-70,-30,52]) //52
-translate([5,-30,-3]) //52
+translate([5,-30,0]) //52
 difference()
 {
     union()
     {
-        translate([33,22.5,0])
-        cube([31.9, 15,3], false);
-        translate([21,22.5,-30])
-        cube([15, 15,3], false);
-        translate([33,22.5,-30])
-        cube([3, 15,33], false);
-        translate([1,-17.5,-30])
+        translate([1,-17.5,0])
         cube([20, 95,3], false);
-        translate([1,69.5,-30])
+        translate([1,69.5,0])
         cube([20, 8,13], false);
-        translate([1,-17.5,-30])
+        translate([1,-17.5,0])
         cube([20, 8,13], false);
         
-        translate([1,69.5,-17])
+*        translate([1,69.5,13])
         cube([20, 8,2], false);
-        translate([1,-17.5,-17])
+*        translate([1,-17.5,13])
         cube([20, 8,2], false);
-        
-        difference()
-        {
-            translate([56.9,2.5,-3])
-            cube([8, 55,6], false);
-            union()
-            {
-                translate([59.3,5.4,-5])
-               cube([3.2, 49.2,5], false);
-                translate([55,9.4,-5])
-               cube([13.2, 41.2,5], false);
-            }
-        }
     }
-        translate([3.3,71.8,-31])
+#    union()
+    {
+        translate([3.3,71.8,-.25])
         cube([15.4, 3.4, 14], false);
-        translate([3.3,-15.2,-31])
+        translate([3.3,-15.2,-.25])
         cube([15.4, 3.4, 14], false);
         
-        translate([11,30,-22])
+        translate([11,30,8])
         rotate([90,0,0])
         cylinder(97,1.62,1.62,true); // Cross piece holes
-    
-    translate([11,30,-30.5])
-    cylinder(5,1.62,1.62,false); // pulley axle hole
+
+        translate([11,30,-.5])
+        cylinder(5,1.62,1.62,false); // pulley axle hole
+    }
 }
 
 
