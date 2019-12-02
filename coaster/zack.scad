@@ -1,16 +1,12 @@
-include <defaultparams.scad>
 
 coasterRadius = 55; // [40, 45, 50, 55, 60]
 coasterHeight = 5; // [4, 5, 6, 7]
 rimWidth = 5; // [4, 5, 6]
 numPoints = 8; // [4, 5, 6, 7, 8, 9, 10]
 
-innerRadius = coasterRadius - rimWidth;
-circleRadius = m2 * innerRadius;
-innerLogoRadius = m1 * innerRadius;
 
 // coaster body
-*difference()
+difference()
 {
     union()
     {
@@ -23,24 +19,24 @@ innerLogoRadius = m1 * innerRadius;
         cylinder(coasterHeight,circleRadius,circleRadius);
         starTips(numPoints,coasterHeight,innerRadius,innerLogoRadius,circleRadius);
     }
-    translate([0,0,-.1])
-    cutout(numPoints,coasterHeight,innerRadius,innerLogoRadius,circleRadius);
+    translate([0,0,-1])
+    cutout(numPoints,coasterHeight + 2,innerRadius,innerLogoRadius,circleRadius -1);
 }
 
-cutout(numPoints,coasterHeight,innerRadius,innerLogoRadius,circleRadius);
 
 module cutout(numPoints = 8, height = 4 ,outerRad = 50, innerRad = 20, circleRad=40)
 {
     intersection()
     {
-        cylinder(height + 1 ,circleRad,circleRad);
-        translate([0,0,-.1])
-        star(numPoints,height + 2,outerRad,innerRad);    
+        cylinder(height ,circleRad,circleRad);
+        translate([0,0,-.5])
+        star(numPoints,height,outerRad,innerRad);    
     }
 }
 
 module star(numPoints = 8, height = 4 ,outerRad = 50, innerRad = 20) 
 {
+    
     totalPoints = numPoints * 2;
     increment = 360/totalPoints;
     
@@ -63,3 +59,12 @@ module starTips(numPoints = 8, height = 4 ,outerRad = 50, innerRad = 20, circleR
         cylinder(height + 1,circleRad,circleRad);
     }
 }
+
+$fn=100;
+m1 = 0.159789289; // inner logo multiplier
+m2 = 0.69666374; // logo circle multiplier
+
+innerRadius = coasterRadius - rimWidth;
+circleRadius = m2 * innerRadius;
+innerLogoRadius = m1 * innerRadius;
+
