@@ -4,8 +4,8 @@ $fn=100;
 //dimensions from:
 	// http://www.numberfactory.com/NEMA%20Motor%20Dimensions.htm
 showTop = true;
-showBase = false;
-showSpacer = false;
+showBase = true;
+showSpacer = true;
 
 module prism(l, w, h)
 {
@@ -19,7 +19,7 @@ if(showSpacer)
 translate([35,-15])
 difference()
 {
-    cylinder(36.4,5,5,false);
+    cylinder(5,5,5,false);
     translate([0,0,-.1])
     cylinder(38,1.85,1.85,false);
 
@@ -40,6 +40,12 @@ difference()
         cube([15, 3,35], false);
         translate([3.5,-15,0])
         cube([15, 3,35], false);  // add back
+        translate([10.5,-20,0])
+        cube([3, 5,22], false);  // add back
+        translate([10.5,75,0])
+        cube([3, 5,22], false);  // add back
+
+        
     }
     translate([48,8,-.1])
     cylinder(3.2,1.6,1.6,false); // Mounting hole
