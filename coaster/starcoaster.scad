@@ -20,7 +20,7 @@ difference()
         starTips(numPoints,coasterHeight,innerRadius,innerLogoRadius,circleRadius);
     }
     translate([0,0,-1])
-    cutout(numPoints,coasterHeight + 2,innerRadius,innerLogoRadius,circleRadius -1);
+    cutout(numPoints,coasterHeight + 2,innerRadius,innerLogoRadius,circleRadius-1);
 }
 
 
@@ -44,7 +44,7 @@ module star(numPoints = 8, height = 4 ,outerRad = 50, innerRad = 20)
         
     points = [ for(a=[0:increment:361 - increment]) (getPoint(a,((a % (increment * 2)) <= .01? outerRad : innerRad)))];
     echo(points);
-    linear_extrude(height)
+    linear_extrude(height,convexity = 20)
     polygon(points);
 }
 
