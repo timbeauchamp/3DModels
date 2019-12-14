@@ -3,8 +3,8 @@ use <../../MCAD/motors.scad>;
 $fn=100;
 //dimensions from:
 	// http://www.numberfactory.com/NEMA%20Motor%20Dimensions.htm
-showTop = true;
-showBase = true;
+showTop = false;
+showBase = false;
 showSpacer = true;
 
 module prism(l, w, h)
@@ -19,7 +19,7 @@ if(showSpacer)
 translate([35,-15])
 difference()
 {
-    cylinder(5,5,5,false);
+    cylinder(3.5,5,5,false);
     translate([0,0,-.1])
     cylinder(38,1.85,1.85,false);
 
@@ -33,6 +33,10 @@ difference()
     union()
     {
         cube([70, 60,2.5], false);
+
+        translate([-48,20,0])
+        cube([50,20,2.5 ],false);
+
         translate([3.5,-15,0])
         cube([15, 90,2.5], false);
 
@@ -98,6 +102,38 @@ translate([-10.6,0,2])
         cube([12,5,4]);
 
   }
+}
+}
+
+//encoder support
+translate([-107.4,0,2])// -10.6 butt-59 half
+rotate([0,0,180])
+{
+    translate([10.5,-10,0])
+    rotate([0,0,90])
+    prism(2.5, 5.5, 12);
+
+    translate([3,-10,0])
+    cube([2, 2.5, 12], false);
+
+    translate([10.5,7.5,0])
+    rotate([0,0,90])
+    prism(2.5, 5.5, 12);
+
+    translate([3,7.5,0])
+    cube([2, 2.5, 12], false);
+
+    difference()
+    {
+    translate([0,-10,0])
+    cube([3,20,40],false);
+    
+    translate([3.4,0,28.77])
+    rotate([0,-90,0])
+    union()
+    {   
+      cylinder(8,5,5);
+    }
 }
 }
 }
