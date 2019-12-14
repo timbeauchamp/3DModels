@@ -1,8 +1,9 @@
 include <gears/gears.scad>
 
 showPinion=false;
-showPulley = true;
+showPulley = false;
 showKeyedBore = false;
+showEncoderPinion=true;
 
  
 gear_teeth=35;
@@ -75,11 +76,28 @@ translate([60,0,00])
         scale([gear_scale,gear_scale,gear_scale])
         bevel_gear(modul=1, tooth_number=pinion_teeth, partial_cone_angle=delta_pinion, tooth_width=tooth_width, bore=pinion_bore, pressure_angle=pressure_angle, helix_angle=-helix_angle);
     translate([0,0,-1])
-    cylinder(  cylinderHeight + 2,    2.68,    2.68, $fa = 4, $fs = 0.01);
+    cylinder(  cylinderHeight + 2, 2.68, 2.68, $fa = 4, $fs = 0.01);
     }
     
     translate([1.6,-2.5,cylinderHeight - keyHeight])
     cube([2.5,5,keyHeight]);
+}
+
+if(showEncoderPinion)
+translate([48,28,00])
+{
+    cylinderHeight = 10.887;
+ 
+    // pinion
+    translate([0,0,0])
+    difference()
+    { 
+        scale([gear_scale,gear_scale,gear_scale])
+        bevel_gear(modul=1, tooth_number=pinion_teeth, partial_cone_angle=delta_pinion, tooth_width=tooth_width, bore=pinion_bore, pressure_angle=pressure_angle, helix_angle=-helix_angle);
+    translate([0,0,-1])
+    cylinder(  cylinderHeight + 2, 4.6, 4.6, $fa = 4, $fs = 0.01);
+    }
+    
 }
 
 if(showKeyedBore)
