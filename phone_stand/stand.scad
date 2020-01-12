@@ -4,52 +4,57 @@ $fn=50;
         { 
             union()
             {
-                translate([75.1,1.6,0])
+                translate([75.1,0,1.6])
+                rotate([-90,0,0])
                 cylinder(100,1.62,1.62);
-                translate([1.5,75,0])
+                translate([1.5,100,55])
+                rotate([90,0,0])
                 cylinder(100,1.5,1.5);
-                cube([3,75,100]);
-                cube([75,3,100]);
+                cube([3,100,55]);
+                cube([75,100,3]);
             }
             union()
             {
-                translate([-0.1,15,15])
-                cube([3.2,50,70]);
-                translate([25.,-0.1,15])
-                cube([40,3.2,70]); 
-                translate([12,3.1,50])
-                rotate([90,0,0])
+                translate([-0.1,15,5])
+                cube([3.2,70,45]);
+                translate([25.,15,-0.1])
+                cube([55,70,3.5]); 
+                translate([12,50,-0.1])
+                rotate([0,0,90])
                 cylinder(3.2,7,7,center=false);
             }
         }
         
-        translate([8.9,38,0])
-        rotate([0,0,-30])
+        translate([8.9,0,38])
+        rotate([0,30,0])
         difference()
         {
             union()
             {
                 translate([3,0,0])
-                cube([72,3,100]);
-                translate([0,3,0])
-                cube([3,15,100]);
-                translate([3,18,0])
-                cube([10,3,100]);
-                translate([3,3,0])
+                cube([72,100,3]);
+                translate([0,0,3])
+                cube([3,100,15]);
+                translate([3,0,18])
+                cube([10,100,3]);
+                translate([3,0,3])
+                rotate([-90,0,0])
                 cylinder(100,3,3);
-                translate([3,18,0])
+                translate([3,0,18])
+                rotate([-90,0,0])
                 cylinder(100,3,3);
-                translate([13,19.5,0])
+                translate([13,0,19.5])
+                rotate([-90,0,0])
                 cylinder(100,1.5,1.5);
             }
             union()
             {
-                translate([3,3,-0.1])
-                    cube([3,15,100.2]);
-                translate([-0.4,-0.1,37.5])
+                translate([3,-.1,3])
+                    cube([3,100.2,15]);
+                translate([-0.4,37.5,-0.1])
                     cube([10,18,25]);
-                translate([5,-0.1,10])
-                    cube([60,3.2,80]);
+                translate([5,10,-0.1])
+                    cube([75,80,3.3]);
             }    
         }
 
