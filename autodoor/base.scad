@@ -4,8 +4,8 @@ $fn=100;
 //dimensions from:
 	// http://www.numberfactory.com/NEMA%20Motor%20Dimensions.htm
 showTop = false;
-showBase = false;
-showSpacer = true;
+showBase = true;
+showSpacer = false;
 
 module prism(l, w, h)
 {
@@ -59,8 +59,8 @@ difference()
     translate([11,30,-.5])
     cylinder(5,1.62,1.62,false); // pulley axle hole
 }
-//motor support
-translate([-10.6,0,2])
+//Stepper motor support
+*translate([-10.6,0,2])
 {
     translate([10.5,-24.5,0])
     rotate([0,0,90])
@@ -104,6 +104,52 @@ translate([-10.6,0,2])
   }
 }
 }
+
+//Gear motor support
+translate([-10.6,0,2])
+{
+    translate([10.5,-24.5,0])
+    rotate([0,0,90])
+    prism(2.5, 5.5, 12);
+
+    translate([3,-24.5,0])
+    cube([2, 2.5, 12], false);
+
+    translate([10.5,22,0])
+    rotate([0,0,90])
+    prism(2.5, 5.5, 12);
+
+    translate([3,22,0])
+    cube([2, 2.5, 12], false);
+
+    difference()
+    {
+    translate([0,-24.5,0])
+    cube([3,49,45],false);
+    
+    translate([3.4,0,28.77])
+    rotate([0,-90,0])
+    union()
+    {   
+      cylinder(8,6,6);
+      translate([0,-6,0])
+        cube([22,9,4]);
+
+      translate([5,-25,0])
+        cube([12,20,4]);
+
+      translate([8.9,8.4,0])
+      cylinder(4,1.5,1.5);
+
+      translate([-8.9,8.4,0])
+      cylinder(4,1.5,1.5);
+
+      translate([0,-11.3,0])
+      cylinder(4,2.1,2.1);
+  }
+}
+}
+
 
 //encoder support
 translate([-107.4,0,2])// -10.6 butt-59 half

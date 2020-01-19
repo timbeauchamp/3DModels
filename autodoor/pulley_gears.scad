@@ -1,8 +1,8 @@
 include <gears/gears.scad>
 
 showPinion=false;
-showPulley = false;
-showKeyedBore = false;
+showPulley = true;
+showKeyedBore = true;
 showEncoderPinion=true;
 
  
