@@ -23,21 +23,32 @@ module LED(r=2.5, h=9.69)
     }
 }
 
+module airlock(bulbRad, bulbSeparation, buffer=.5)
+{
+    union()
+    {
+        cylinder(60,r=bulbRad/2, center=true);
+        sphere(r=bulbRad + buffer);
+        translate([0,0,bulbSeparation])
+            sphere(r=bulbRad + buffer);
+    }
+}
 
 rotate([90,0,0])
 difference()
 {
     union()
     {
-        cube([32.5,8,8], center = true);
+        cube([3,10,50], center = true);
+        cube([28.5,10,10], center = true);
     }
     union()
     {
         union()    //LEDs
         {
             LEDHeight = 9.69;
-            LEDRad = 2.65;
-            separation = bulbRadius * 1.5;
+            LEDRad = 2.62;
+            separation = bulbRadius * 1.0;
         
 
             translate([-(LEDHeight+ separation)/2,0,0])
@@ -49,13 +60,7 @@ difference()
                     LED(h=LEDHeight, r=LEDRad);
         }
 
-        translate([0,tubeRad-2.5,0])
-        union()
-        {
-            cylinder(60,r=tubeRad/2, center=true);
-            sphere(r=tubeRad +.5);
-            translate([0,0,bulbSeparation])
-                sphere(r=tubeRad);
-        }
+        translate([0,tubeRad - 1,0])    // Tube
+        airlock(bulbRadius, bulbSeparation);
     }
 }
