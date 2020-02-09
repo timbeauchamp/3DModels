@@ -1,3 +1,4 @@
+use <airlock.scad>
 $fn=60;
 
 bulbRadius = 9.4;
@@ -23,14 +24,19 @@ module LED(r=2.5, h=9.69)
     }
 }
 
-module airlock(bulbRad, bulbSeparation, buffer=.5)
+//translate([0,0,-11])
+translate([32,0,0])
+difference()
 {
+    cube([31,14,10], center = true);
+
+    translate([0,0,2])
     union()
     {
-        cylinder(60,r=bulbRad/2, center=true);
-        sphere(r=bulbRad + buffer);
-        translate([0,0,bulbSeparation])
-            sphere(r=bulbRad + buffer);
+        cube([20,30,10], center = true);
+        cube([28.6,10.1,10], center = true);        
+        translate([0,7,0])
+            cube([35,15,7], center = true);        
     }
 }
 
@@ -39,7 +45,7 @@ difference()
 {
     union()
     {
-        cube([3,10,50], center = true);
+        cube([3,10,30], center = true);
         cube([28.5,10,10], center = true);
     }
     union()
@@ -48,6 +54,7 @@ difference()
         {
             LEDHeight = 9.69;
             LEDRad = 2.62;
+            lightChannelRad  =  LEDRad *.85;
             separation = bulbRadius * 1.0;
         
 
@@ -58,9 +65,12 @@ difference()
             translate([(LEDHeight+ separation)/2,0,0])
                 rotate([0,-90,0])
                     LED(h=LEDHeight, r=LEDRad);
+            rotate([0,90,0])
+                cylinder(separation + LEDHeight,r=lightChannelRad, center=true);
         }
 
         translate([0,tubeRad - 1,0])    // Tube
+        rotate([0,0,-90])
         airlock(bulbRadius, bulbSeparation);
     }
 }
