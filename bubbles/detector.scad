@@ -35,7 +35,7 @@ difference()
         translate([0,0,-4])
         {
             cube([40,40,2], center = true);
-            cube([20,80,2], center = true);
+            cube([20,94,2], center = true);
         }
         translate([19,0,6])
         {
@@ -45,9 +45,9 @@ difference()
         {
             cube([2,40,20], center = true);
         }
-        translate([0,39,6])
+        translate([0,46,20])
         {
-            cube([20,2,20], center = true);
+            cube([20,2,48], center = true);
         }
     }
     translate([0,0,2])
@@ -57,9 +57,9 @@ difference()
         cube([28.6,10.1,10], center = true);        
         translate([0,7,0])
             cube([35,15,7], center = true);   
-        translate([0,39,7])
+        translate([0,46,31])
             rotate([90,0,0])
-                cylinder(4,r=5.25,center=true);     
+                cylinder(4,r=5.5,center=true);     
     }
 }
 *
