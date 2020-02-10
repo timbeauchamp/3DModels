@@ -28,18 +28,41 @@ module LED(r=2.5, h=9.69)
 translate([32,0,0])
 difference()
 {
-    cube([31,14,10], center = true);
-
+    union()
+    {
+        
+        cube([31,14,10], center = true);
+        translate([0,0,-4])
+        {
+            cube([40,40,2], center = true);
+            cube([20,80,2], center = true);
+        }
+        translate([19,0,6])
+        {
+            cube([2,40,20], center = true);
+        }
+        translate([-19,0,6])
+        {
+            cube([2,40,20], center = true);
+        }
+        translate([0,39,6])
+        {
+            cube([20,2,20], center = true);
+        }
+    }
     translate([0,0,2])
     union()
     {
         cube([20,30,10], center = true);
         cube([28.6,10.1,10], center = true);        
         translate([0,7,0])
-            cube([35,15,7], center = true);        
+            cube([35,15,7], center = true);   
+        translate([0,39,7])
+            rotate([90,0,0])
+                cylinder(4,r=5.25,center=true);     
     }
 }
-
+*
 rotate([90,0,0])
 difference()
 {
@@ -50,6 +73,7 @@ difference()
     }
     union()
     {
+        translate([0,1,0])
         union()    //LEDs
         {
             LEDHeight = 9.69;
