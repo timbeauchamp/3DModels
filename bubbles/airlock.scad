@@ -1,3 +1,6 @@
+//  Airlock for Brewing
+//  Tim Beauchamp
+
 $fn=60;
 
 bulbRadius = 9.4;

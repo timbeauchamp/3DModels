@@ -1,3 +1,8 @@
+//  Detector for Bubble Counter
+// Tim Beauchamp
+
+
+
 use <airlock.scad>
 $fn=60;
 
@@ -26,40 +31,51 @@ module LED(r=2.5, h=9.69)
 
 //translate([0,0,-11])
 translate([32,0,0])
-difference()
+union()
 {
-    union()
+    difference()
     {
-        
-        cube([31,14,10], center = true);
-        translate([0,0,-4])
+        union()
         {
-            cube([40,40,2], center = true);
-            cube([20,94,2], center = true);
+            
+            cube([31,14,10], center = true);
+            translate([0,0,-4])
+            {
+                cube([40,40,2], center = true);
+                cube([20,94,2], center = true);
+            }
+            translate([19,0,6])
+            {
+                cube([2,40,20], center = true);
+            }
+            translate([-19,0,6])
+            {
+                cube([2,40,20], center = true);
+            }
+            translate([0,46,20])
+            {
+                cube([20,2,48], center = true);
+            }
         }
-        translate([19,0,6])
+        translate([0,0,2])
+        union()
         {
-            cube([2,40,20], center = true);
-        }
-        translate([-19,0,6])
-        {
-            cube([2,40,20], center = true);
-        }
-        translate([0,46,20])
-        {
-            cube([20,2,48], center = true);
+            cube([20,30,10], center = true);
+            cube([28.6,10.1,10], center = true);        
+            translate([0,7,0])
+                cube([35,15,7], center = true);   
+            translate([0,46,27])
+                rotate([90,0,0])
+                    cylinder(4,r=5.5,center=true);     
         }
     }
-    translate([0,0,2])
-    union()
+    difference()
     {
-        cube([20,30,10], center = true);
-        cube([28.6,10.1,10], center = true);        
-        translate([0,7,0])
-            cube([35,15,7], center = true);   
-        translate([0,46,31])
-            rotate([90,0,0])
-                cylinder(4,r=5.5,center=true);     
+        
+        translate([0,-bulbSeparation - 1,20])
+            cube([36,2,50], center = true);
+       translate([0,-bulbSeparation - 1,20])
+            cube([bulbRadius*2+.2,4,52], center = true);        
     }
 }
 *
