@@ -69,9 +69,9 @@ union()
             translate([7,0,-20])
             cube([4.1,2.75,22],center=true);
             translate([-9,0,9])
-            cube([10,2.75,83],center=true);
+            cube([10,6.75,83],center=true);
         }
         translate([-11.1,0,41])
-            cube([6,2.8,5],center=true);
+            cube([6,6.8,5],center=true);
     }
 }
