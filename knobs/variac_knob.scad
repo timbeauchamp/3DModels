@@ -1,5 +1,9 @@
 $fn=50;
 
+//  Veriac Knob 
+//  Tim Beauchamp
+
+// Art Deco ridges
 for(a = [0 : 45 : 360-45])
 {
     rotate([0,0,a])
@@ -21,6 +25,7 @@ for(a = [0 : 45 : 360-45])
     }
 }
 
+// Body of the knob itself
 translate([0,0,-24])
 difference()
 {
@@ -47,6 +52,8 @@ difference()
     }
 }
 
+
+// Pointer
 pointerPoints = [
   [  0,  -10,  0 ],  //0
   [ 15,  -4,  0 ],  //1
