@@ -69,31 +69,29 @@ rotate([0,90,0])
 scale([1,.5,1])
 cylinder(2,d=20,center=true);
 
-translate([-90.32414952, 72.05009636,2.5])
-//translate([90,70,2.5])
+translate([-90.32414952, 72.05009636,3])
 rotate([-90,0,90])
 {
-    cylinder(7, d=5, center=true);
-    translate([0,0,3.5])
-        sphere(d=5);
+    cylinder(7, d=6, center=true);
+    translate([0,0,3])
+        sphere(d=6);
 }
 
-translate([0,126,2.5])
+translate([0,126,3])
 rotate([-90,0,0])
 {
-    cylinder(5, d=5, center=true);
+    cylinder(5, d=6, center=true);
     translate([0,0,2.55])
-        sphere(d=5);
+        sphere(d=6);
 }
 
 
-translate([90.32414952, 72.05009636,2.5])
-//translate([90,70,2.5])
+translate([90.32414952, 72.05009636,3])
 rotate([-90,0,-90])
 {
-    cylinder(7, d=5, center=true);
-    translate([0,0,3.5])
-        sphere(d=5);
+    cylinder(7, d=6, center=true);
+    translate([0,0,3])
+        sphere(d=6);
 }
 
 

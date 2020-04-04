@@ -2,11 +2,11 @@ $fn=70;
 
 //119 x 30
 
-RADIUS=85;
+RADIUS=80;
 BASEWIDTH=5.3;
 BASEHIEGHT=3.85;
 VANEWIDTH=1.15;
-CHANNELWIDTH=.7;
+CHANNELWIDTH=.6;
 HEIGHT=13;
 INSIDEHEIGHT=2.7;
 
@@ -29,7 +29,7 @@ difference()
             union()
             {
                 cylinder(VANEWIDTH + .6, d=6.6, center=true);
-                cylinder(VANEWIDTH+CHANNELWIDTH+.6, 3, 2);
+                cylinder(VANEWIDTH+CHANNELWIDTH+.6, 4, 1);
             }
         }
 
