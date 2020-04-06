@@ -1,6 +1,8 @@
 $fn=70;
 
-linear_extrude(20)
+HEIGHT=13;
+
+linear_extrude(HEIGHT)
 union()
 { 
     translate([0,25,0])
@@ -59,15 +61,15 @@ union()
     square([3,20],center=true);
 }
 
-translate([84,-17,10])
+translate([84,-17,HEIGHT/2])
 rotate([0,90,0])
 scale([1,.5,1])
-cylinder(2,d=20,center=true);
+cylinder(2,d=HEIGHT,center=true);
 
-translate([-84,-17,10])
+translate([-84,-17,HEIGHT/2])
 rotate([0,90,0])
 scale([1,.5,1])
-cylinder(2,d=20,center=true);
+cylinder(2,d=HEIGHT,center=true);
 
 translate([-90.32414952, 72.05009636,3])
 rotate([-90,0,90])
@@ -96,7 +98,7 @@ rotate([-90,0,-90])
 
 
 // band holder
-translate([90,0,10])
+translate([90,0,9])
 rotate([-90,0,0])
 {
     difference()
@@ -122,7 +124,7 @@ rotate([-90,0,0])
 }
 
 // band holder
-translate([-90,0,10])
+translate([-90,0,9])
 rotate([90,180,0])
 {
     difference()
@@ -144,7 +146,7 @@ rotate([90,180,0])
             cylinder(15, d=5, center=true);
         }
     }
-    prism(6, 8, 7.71,4);
+    prism(6, 8, 6.71,4);
 }
 module prism(l, w, h, l2)
 {
