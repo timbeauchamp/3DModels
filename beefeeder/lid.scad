@@ -2,28 +2,28 @@ $fn=100;
 
 threaddepth = 2.5;
 pitch = 5.625;
-lidID = 87.25;
-
-
-
+lidID = 88;
+holeangle  = 60;
 
 difference()
 {
-    cylinder(18,d=lidID+4);
+    cylinder(18,d=lidID+3);
     union()
     {
         translate([0,0,1])
             cylinder(18,d=lidID);
         
-        for(a=[0:30:360])
+        for(a=[0:holeangle:360])
         {
             rotate([0,0,a])
             {
                 translate([15,0,-1])
-                    cylinder(18+2,d=2, center=true);
-                translate([30,0,-1])
-                    cylinder(18+2,d=2, center=true);
-
+                    cylinder(6,d=1, center=true);
+                rotate([0,0,holeangle/2])
+                {
+                    translate([30,0,-1])
+                        cylinder(6,d=1, center=true);
+                }
             }
         }
     }
